@@ -30,6 +30,7 @@ public class Respuesta {
 	@Column(name = "DESCRIPCION_RESPUESTA")
 	private String descripcionRespuesta;
 	
+	//Muchas Respuestas tienen una pregunta
 	@ManyToOne
 	@JoinColumn(name = "ID_PREGUNTA_FK")
 	private Pregunta pregunta;

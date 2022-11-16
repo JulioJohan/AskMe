@@ -37,8 +37,12 @@ public class Pregunta {
 	
 	@Lob
 	@JsonIgnore
+	@Column(name = "ARCHIVO")
 	private byte[] archivo;
 		
+	public Pregunta() {
+		
+	}
 	
 }
 
