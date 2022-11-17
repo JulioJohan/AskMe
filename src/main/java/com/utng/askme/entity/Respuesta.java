@@ -30,6 +30,9 @@ public class Respuesta {
 	@Column(name = "DESCRIPCION_RESPUESTA")
 	private String descripcionRespuesta;
 	
+	@Column(name = "LIKE_RESPUESTA")
+	private Integer like;
+	
 	//Muchas Respuestas tienen una pregunta
 	@ManyToOne
 	@JoinColumn(name = "ID_PREGUNTA_FK")
