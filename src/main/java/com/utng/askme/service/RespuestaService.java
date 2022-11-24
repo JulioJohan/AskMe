@@ -5,13 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.utng.askme.entity.Respuesta;
 import com.utng.askme.entity.RespuestaDTO;
+import com.utng.askme.entity.RespuestaLikesDTO;
 import com.utng.askme.repository.IPreguntaRepositoy;
 import com.utng.askme.repository.IRespuestaRepositoy;
 
@@ -23,6 +28,9 @@ public class RespuestaService implements IRespuestaService {
 	
 	@Autowired
 	IPreguntaRepositoy preguntaRepository;
+	
+	@Autowired
+	EntityManager entityManager;
 
 	/**
 	 * modelMapperEntity: Mappper para entidades
@@ -82,9 +90,29 @@ public class RespuestaService implements IRespuestaService {
 	}
 
 	@Override
-	public Integer sumarLikes(Integer like) {
+	@Transactional
+	public Integer sumarLikes(Integer idRespuesta) {
 		
-		return null;
+		Query query = entityManager.createNativeQuery("UPDATE respuesta r SET r.like_respuesta = r.like_respuesta +1 WHERE r.id =:id");
+		query.setParameter("id", idRespuesta);
+		
+		query.executeUpdate();
+		return idRespuesta;
+				
 	}
+
+	@Override
+	@Transactional
+	public Integer restarLikes(Integer idRespuesta) {
+		Query query = entityManager.createNativeQuery("UPDATE respuesta r SET r.like_respuesta = r.like_respuesta -1 WHERE r.id =:id");
+		
+		query.setParameter("id", idRespuesta);
+		query.executeUpdate();
+
+		return idRespuesta;
+		
+	}
+	
+	
 
 }

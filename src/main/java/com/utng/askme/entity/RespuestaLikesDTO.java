@@ -7,16 +7,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class RespuestaDTO {
+public class RespuestaLikesDTO {
 
 	private Integer id;
-	 
-	private String descrpcionRespuesta;
-	
-	private Integer like;
 
-	
-	private Integer preguntaDto;
-	
-	private byte[] archivo;
 }

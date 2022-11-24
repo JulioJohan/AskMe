@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.utng.askme.entity.RespuestaDTO;
+import com.utng.askme.entity.RespuestaLikesDTO;
 
 public interface IRespuestaService {
 	
@@ -17,5 +18,8 @@ public interface IRespuestaService {
 
 	public void eliminarRespuestaId(Integer respuestaDTO);
 
-	public Integer sumarLikes(Integer like);
+	public Integer sumarLikes(Integer idRespuesta);
+	
+	public Integer restarLikes(Integer idRespuesta);
+	
 }

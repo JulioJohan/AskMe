@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.utng.askme.entity.RespuestaDTO;
+import com.utng.askme.entity.RespuestaLikesDTO;
 import com.utng.askme.service.IRespuestaService;
 
 @RestController
@@ -52,6 +55,19 @@ public class RespuestaController {
 	public ResponseEntity<Object> eliminarPregunta(@PathVariable Integer id) {
 		respuestaService.eliminarRespuestaId(id);
 		return ResponseEntity.noContent().build();
+	}
+	
+	
+	@PutMapping("/sumarLikes/{idRespuesta}")
+	public ResponseEntity<Integer> sumarLikes(@PathVariable Integer idRespuesta) throws IOException{
+		Integer response = respuestaService.sumarLikes(idRespuesta);
+		return new ResponseEntity<Integer>(response,HttpStatus.OK);
+	}
+	
+	@PutMapping("/restarLikes/{idRespuesta}")
+	public ResponseEntity<Integer> restarLikes(@PathVariable Integer idRespuesta) throws IOException{
+		Integer response = respuestaService.restarLikes(idRespuesta);
+		return new ResponseEntity<Integer>(response,HttpStatus.OK);
 	}
 	
 	
