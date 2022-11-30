@@ -17,7 +17,7 @@ import com.utng.askme.repository.IPreguntaRepositoy;
 import com.utng.askme.repository.IRespuestaRepositoy;
 
 @Service
-public class PreguntaService implements IPreguntaService {
+public class PreguntaTwitterService implements IPreguntaService {
 
 	@Autowired
 	IPreguntaRepositoy iPreguntaRepositoy;
@@ -46,58 +46,45 @@ public class PreguntaService implements IPreguntaService {
 	}
 
 	@Override
-	public List<PreguntaDTO> buscarTodos() {
-		List<Pregunta> listaDTO = (List<Pregunta>) iPreguntaRepositoy.findAll();
-		List<PreguntaDTO>regresa = new ArrayList<>();
-		for(Pregunta pregu: listaDTO) {
-			regresa.add(convertToDto(pregu));
-		}
+	public List<Pregunta> buscarTodos() {
+		List<Pregunta> lista = iPreguntaRepositoy.findAll();
+		
 			
-		return regresa;
+		return lista;
 	}
 
 	@Override
-	public PreguntaDTO buscarPorId(Integer id) {
+	public Pregunta buscarPorId(Integer id) {
 		Optional<Pregunta> idOpcional = iPreguntaRepositoy.findById(id);
-		PreguntaDTO preguntaDto = convertToDto(idOpcional.get());
-		return preguntaDto;
+		Pregunta pregunta = idOpcional.get();
+		return pregunta;
 	}
 
 	@Override
-	public PreguntaDTO guardarPregunta(PreguntaDTO pregunta, MultipartFile archi) throws IOException {
+	public Pregunta guardarPregunta(Pregunta pregunta, MultipartFile archi) throws IOException {
 		if(!archi.isEmpty()) {
 			pregunta.setArchivo(archi.getBytes());
 		}
+				
 		
-		Pregunta preguntaEntity = convertToEntity(pregunta);
+		Pregunta guardar = iPreguntaRepositoy.save(pregunta);
 		
-		
-		Pregunta guardar = iPreguntaRepositoy.save(preguntaEntity);
-		
-		return convertToDto(guardar);
+		return guardar;
 	}
 
 	@Override
-	public PreguntaDTO actualizarPregunta(PreguntaDTO pregunta) {
+	public Pregunta actualizarPregunta(Pregunta pregunta) {
 		Optional<Pregunta> idPerfil = iPreguntaRepositoy.findById(pregunta.getId());
-		if(idPerfil.isPresent()) {
-			
-		}
 		
-		Pregunta preguntaEntity = convertToEntity(pregunta);
-		
-		Pregunta regresaPregunta = iPreguntaRepositoy.save(preguntaEntity);
-		return convertToDto(regresaPregunta);
+				
+		Pregunta regresaPregunta = iPreguntaRepositoy.save(pregunta);
+		return regresaPregunta;
 	}
 
 	@Override
 	public void eliminarPregunta(Integer id) {
 		List<Respuesta> listaRespuesta = respuestaRepository.buscarPreguntaPorId(id);
-		if(!listaRespuesta.isEmpty()) {
-			for(Respuesta respuestas : listaRespuesta) {
-				respuestaRepository.deleteById(respuestas.getId());
-			}
-		}
+		
 		iPreguntaRepositoy.deleteById(id);		
 	}
 	

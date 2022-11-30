@@ -5,17 +5,17 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.utng.askme.entity.PreguntaDTO;
+import com.utng.askme.entity.Pregunta;
 
 public interface IPreguntaService {
 
-	public List<PreguntaDTO> buscarTodos();
+	public List<Pregunta> buscarTodos();
 	
-	public PreguntaDTO buscarPorId(Integer id);
+	public Pregunta buscarPorId(Integer id);
 	
-	public PreguntaDTO guardarPregunta(PreguntaDTO pregunta, MultipartFile archi)throws IOException ;
+	public Pregunta guardarPregunta(Pregunta pregunta, MultipartFile archi)throws IOException ;
 	
-	public PreguntaDTO actualizarPregunta(PreguntaDTO pregunta);
+	public Pregunta actualizarPregunta(Pregunta pregunta);
 	
 	public void eliminarPregunta(Integer id);
 

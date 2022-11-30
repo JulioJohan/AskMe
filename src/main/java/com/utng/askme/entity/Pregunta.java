@@ -1,5 +1,7 @@
 package com.utng.askme.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,6 +36,12 @@ public class Pregunta {
 	
 	@Column(name = "SUBTEMA_PREGUNTA")
 	private String subtemaPregunta;
+	
+	@Column(name = "FECHA_PUBLICACION")
+	private Date fecha;
+	
+	@Column(name = "TIPO_PREGUNTA")
+	private String tipoPregunta;
 	
 	@Lob
 	@JsonIgnore

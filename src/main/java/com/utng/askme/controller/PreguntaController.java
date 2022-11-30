@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.utng.askme.entity.PreguntaDTO;
+import com.utng.askme.entity.Pregunta;
 import com.utng.askme.service.IPreguntaService;
 
 @RestController
@@ -30,21 +30,21 @@ public class PreguntaController {
 	IPreguntaService preguntaService;
 	
 	@GetMapping("/consultarTodos")
-	public ResponseEntity<List<PreguntaDTO>> consultarTodos(){
-		List<PreguntaDTO> response = preguntaService.buscarTodos();
-		return new ResponseEntity<List<PreguntaDTO>>(response, HttpStatus.OK);
+	public ResponseEntity<List<Pregunta>> consultarTodos(){
+		List<Pregunta> response = preguntaService.buscarTodos();
+		return new ResponseEntity<List<Pregunta>>(response, HttpStatus.OK);
 	}
 	
 	@GetMapping("/buscarId/{id}")
-	public ResponseEntity<PreguntaDTO> buscarPorId(@PathVariable Integer id){
-		PreguntaDTO response = preguntaService.buscarPorId(id);
-		return new ResponseEntity<PreguntaDTO>(response, HttpStatus.OK);
+	public ResponseEntity<Pregunta> buscarPorId(@PathVariable Integer id){
+		Pregunta response = preguntaService.buscarPorId(id);
+		return new ResponseEntity<Pregunta>(response, HttpStatus.OK);
 	}
 	
 	@PostMapping("/guardarPregunta")
-	public ResponseEntity<PreguntaDTO> guardar(@Valid PreguntaDTO pregunta,@RequestParam MultipartFile archi) throws IOException{
-		PreguntaDTO response = preguntaService.guardarPregunta(pregunta,archi);
-		return new ResponseEntity<PreguntaDTO>(response, HttpStatus.OK);
+	public ResponseEntity<Pregunta> guardar(@Valid Pregunta pregunta,@RequestParam MultipartFile archi) throws IOException{
+		Pregunta response = preguntaService.guardarPregunta(pregunta,archi);
+		return new ResponseEntity<Pregunta>(response, HttpStatus.OK);
 
 	}
 	@DeleteMapping("/eliminarPregunta/{id}")
