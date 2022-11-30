@@ -20,37 +20,47 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.utng.askme.entity.Pregunta;
 import com.utng.askme.service.IPreguntaService;
+import com.utng.askme.service.PreguntaFactoryService;
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/pregunta")
 public class PreguntaController {
 	
+//	@Autowired
+//	IPreguntaService preguntaService;
+	
 	@Autowired
-	IPreguntaService preguntaService;
+	PreguntaFactoryService preguntaFactory;
 	
-	@GetMapping("/consultarTodos")
-	public ResponseEntity<List<Pregunta>> consultarTodos(){
-		List<Pregunta> response = preguntaService.buscarTodos();
-		return new ResponseEntity<List<Pregunta>>(response, HttpStatus.OK);
-	}
-	
-	@GetMapping("/buscarId/{id}")
-	public ResponseEntity<Pregunta> buscarPorId(@PathVariable Integer id){
-		Pregunta response = preguntaService.buscarPorId(id);
+//	@GetMapping("/consultarTodos")
+//	public ResponseEntity<List<Pregunta>> consultarTodos(){
+//		List<Pregunta> response = preguntaService.buscarTodos();
+//		return new ResponseEntity<List<Pregunta>>(response, HttpStatus.OK);
+//	}
+//	
+//	@GetMapping("/buscarId/{id}")
+//	public ResponseEntity<Pregunta> buscarPorId(@PathVariable Integer id){
+//		Pregunta response = preguntaService.buscarPorId(id);
+//		return new ResponseEntity<Pregunta>(response, HttpStatus.OK);
+//	}
+//	
+//	@PostMapping("/guardarPregunta")
+//	public ResponseEntity<Pregunta> guardar(@Valid Pregunta pregunta,@RequestParam MultipartFile archi) throws IOException{
+//		Pregunta response = preguntaService.guardarPregunta(pregunta,archi);
+//		return new ResponseEntity<Pregunta>(response, HttpStatus.OK);
+//
+//	}
+//	@DeleteMapping("/eliminarPregunta/{id}")
+//	public ResponseEntity<Object> eliminarPregunta(@PathVariable Integer id) {
+//		preguntaService.eliminarPregunta(id);
+//		return ResponseEntity.noContent().build();
+//	}
+//	
+	@PostMapping("/guardarPreguntaTipo")
+	public ResponseEntity<Pregunta> guardarPreguntaTipo(@Valid Pregunta pregunta,@RequestParam MultipartFile archi) throws IOException{
+		Pregunta response = preguntaFactory.crearPregunta(pregunta,archi);
 		return new ResponseEntity<Pregunta>(response, HttpStatus.OK);
-	}
-	
-	@PostMapping("/guardarPregunta")
-	public ResponseEntity<Pregunta> guardar(@Valid Pregunta pregunta,@RequestParam MultipartFile archi) throws IOException{
-		Pregunta response = preguntaService.guardarPregunta(pregunta,archi);
-		return new ResponseEntity<Pregunta>(response, HttpStatus.OK);
-
-	}
-	@DeleteMapping("/eliminarPregunta/{id}")
-	public ResponseEntity<Object> eliminarPregunta(@PathVariable Integer id) {
-		preguntaService.eliminarPregunta(id);
-		return ResponseEntity.noContent().build();
 	}
 	
 }

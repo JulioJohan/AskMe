@@ -1,6 +1,7 @@
 package com.utng.askme.service;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class PreguntaRedditService implements IPreguntaService{
 
 	@Override
 	public Pregunta guardarPregunta(Pregunta pregunta, MultipartFile archi) throws IOException {
-		// TODO Auto-generated method stub
+		pregunta.setFecha(new Date());
 		return null;
 	}
 
