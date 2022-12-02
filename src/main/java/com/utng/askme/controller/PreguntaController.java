@@ -20,17 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.utng.askme.entity.Pregunta;
-import com.utng.askme.entity.PreguntaBusquedaDTO;
-import com.utng.askme.service.IPreguntaService;
+import com.utng.askme.entity.BusquedaDTO;
 import com.utng.askme.service.PreguntaFactoryService;
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/pregunta")
 public class PreguntaController {
-	
-//	@Autowired
-//	IPreguntaService preguntaService;
 	
 	@Autowired
 	PreguntaFactoryService preguntaFactory;
@@ -42,34 +38,26 @@ public class PreguntaController {
 	}
 	
 	@PostMapping("/buscarPorNombreTema")
-	public ResponseEntity <List<Pregunta>>buscarPorNombreTema(@RequestBody PreguntaBusquedaDTO preguntaParam){
+	public ResponseEntity <List<Pregunta>>buscarPorNombreTema(@RequestBody BusquedaDTO preguntaParam){
 		List<Pregunta> response = preguntaFactory.buscarPorNombre(preguntaParam);
 		return new ResponseEntity<List<Pregunta>>(response, HttpStatus.OK);
 	}
 	
 	@PostMapping("/buscarPorNombreSubtema")
-	public ResponseEntity <List<Pregunta>>buscarPorNombreSubtema(@RequestBody PreguntaBusquedaDTO preguntaParam){
+	public ResponseEntity <List<Pregunta>>buscarPorNombreSubtema(@RequestBody BusquedaDTO preguntaParam){
 		List<Pregunta> response = preguntaFactory.buscarPorNombre(preguntaParam);
 		return new ResponseEntity<List<Pregunta>>(response, HttpStatus.OK);
 	}
 	
-	
-	
-//	@PostMapping("/guardarPregunta")
-//	public ResponseEntity<Pregunta> guardar(@Valid Pregunta pregunta,@RequestParam MultipartFile archi) throws IOException{
-//		Pregunta response = preguntaService.guardarPregunta(pregunta,archi);
-//		return new ResponseEntity<Pregunta>(response, HttpStatus.OK);
-//
-//	}
 	@DeleteMapping("/eliminarPregunta/{id}")
 	public ResponseEntity<Object> eliminarPregunta(@Valid Pregunta pregunta) {
-		preguntaFactory.eliminarPregunta(pregunta);
+		preguntaFactory.eliminar(pregunta);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@PostMapping("/guardarPregunta")
 	public ResponseEntity<Pregunta> guardarPreguntaTipo(@Valid Pregunta pregunta,@RequestParam MultipartFile archi) throws IOException{
-		Pregunta response = preguntaFactory.crearPregunta(pregunta,archi);
+		Pregunta response = preguntaFactory.crear(pregunta,archi);
 		return new ResponseEntity<Pregunta>(response, HttpStatus.OK);
 	}
 	

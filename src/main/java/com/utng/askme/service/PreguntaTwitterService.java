@@ -24,25 +24,6 @@ public class PreguntaTwitterService implements IPreguntaService {
 	@Autowired
 	IRespuestaRepositoy respuestaRepository;
 	
-	/**
-	 * modelMapperEntity: Mappper para entidades  
-	 */
-	@Autowired
-	private ModelMapper modelMapperEntity;
-
-	/**
-	 * modelMapperEntity: Mappper para DTO  
-	 */
-	@Autowired
-	private ModelMapper modelMapperDTO;
-	
-	private PreguntaDTO convertToDto(Pregunta preguntaE) {
-		return modelMapperDTO.map(preguntaE, PreguntaDTO.class);
-	}
-	
-	private Pregunta convertToEntity(PreguntaDTO preguntaD) {
-		return modelMapperEntity.map(preguntaD, Pregunta.class);
-	}
 
 	@Override
 	public List<Pregunta> buscarTodos(String tipoPregunta) {

@@ -6,18 +6,18 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.utng.askme.entity.Pregunta;
-import com.utng.askme.entity.PreguntaBusquedaDTO;
+import com.utng.askme.entity.BusquedaDTO;
 
 public interface IAbstractFactory<T> {
 
-	T crearPregunta (Pregunta preguntaParam, MultipartFile archi)throws IOException ;
+	T crear (T preguntaParam, MultipartFile archi)throws IOException ;
 	
-	void eliminarPregunta(Pregunta preguntaParam);
+	void eliminar(T preguntaParam);
 	
 	List<T> buscarTodo(String buscarTodos);
 	
-	List<T> buscarPorNombre (PreguntaBusquedaDTO nombre);
+	List<T> buscarPorNombre (BusquedaDTO nombre);
 	
-	List<T> buscarPorNombreSubtema (PreguntaBusquedaDTO preguntaParam);
+	List<T> buscarPorNombreSubtema (BusquedaDTO  preguntaParam);
 
 }

@@ -2,6 +2,7 @@ package com.utng.askme.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,54 +33,27 @@ public class RespuestaService implements IRespuestaService {
 	@Autowired
 	EntityManager entityManager;
 
-	/**
-	 * modelMapperEntity: Mappper para entidades
-	 */
-	@Autowired
-	private ModelMapper modelMapperEntity;
-
-	/**
-	 * modelMapperEntity: Mappper para DTO
-	 */
-	@Autowired
-	private ModelMapper modelMapperDTO;
-
-	private RespuestaDTO convertToDto(Respuesta respuestaE) {
-		return modelMapperDTO.map(respuestaE, RespuestaDTO.class);
-	}
-
-	private Respuesta convertToEntity(RespuestaDTO respuestaD) {
-		return modelMapperEntity.map(respuestaD, Respuesta.class);
+	@Override
+	public List<Respuesta> traeTodos() {
+		List<Respuesta> listaRespuesta = respuestaRepositoy.findAll();
+		return listaRespuesta;
 	}
 
 	@Override
-	public List<RespuestaDTO> traeTodos() {
-		List<Respuesta> listaRespuesta = (List<Respuesta>) respuestaRepositoy.findAll();
-		List<RespuestaDTO> regresa = new ArrayList<>();
-		for (Respuesta respuesta : listaRespuesta) {
-			regresa.add(convertToDto(respuesta));
-		}
-		return regresa;
-	}
-
-	@Override
-	public RespuestaDTO encoentrarRespuestaPorId(Integer id) {
+	public Respuesta encoentrarRespuestaPorId(Integer id) {
 		Optional<Respuesta> buscarId = respuestaRepositoy.findById(id);
-
-		RespuestaDTO respuestaDTO = convertToDto(buscarId.get());
-
-		return respuestaDTO;
+		return buscarId.get();
 	}
 
 	@Override
-	public RespuestaDTO guardarRespuesta(RespuestaDTO respuestaDTO, MultipartFile archi) throws IOException {
+	public Respuesta guardarRespuesta(Respuesta respuestaDTO, MultipartFile archi) throws IOException {
 		if (!archi.isEmpty()) {
 			respuestaDTO.setArchivo(archi.getBytes());
 		}
-		Respuesta respuesta = convertToEntity(respuestaDTO);
-
-		Respuesta guardar = respuestaRepositoy.save(respuesta);
-		return convertToDto(guardar);
+		respuestaDTO.setLike(0);
+		respuestaDTO.setFecha(new Date());
+		Respuesta guardar = respuestaRepositoy.save(respuestaDTO);
+		return guardar;
 	}
 
 	@Override
@@ -92,27 +66,21 @@ public class RespuestaService implements IRespuestaService {
 	@Override
 	@Transactional
 	public Integer sumarLikes(Integer idRespuesta) {
-		
 		Query query = entityManager.createNativeQuery("UPDATE respuesta r SET r.like_respuesta = r.like_respuesta +1 WHERE r.id =:id");
 		query.setParameter("id", idRespuesta);
 		
 		query.executeUpdate();
-		return idRespuesta;
-				
+		return idRespuesta;		
 	}
 
 	@Override
 	@Transactional
 	public Integer restarLikes(Integer idRespuesta) {
 		Query query = entityManager.createNativeQuery("UPDATE respuesta r SET r.like_respuesta = r.like_respuesta -1 WHERE r.id =:id");
-		
 		query.setParameter("id", idRespuesta);
 		query.executeUpdate();
-
 		return idRespuesta;
 		
 	}
-	
-	
 
 }

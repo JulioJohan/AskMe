@@ -7,9 +7,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class PreguntaBusquedaDTO {
+public class BusquedaDTO {
 
-	private String tipoPregunta;
+	private String tipo;
 	
 	private String busqueda;
 }

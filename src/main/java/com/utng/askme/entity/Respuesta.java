@@ -1,5 +1,7 @@
 package com.utng.askme.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,6 +34,9 @@ public class Respuesta {
 	
 	@Column(name = "LIKE_RESPUESTA")
 	private Integer like;
+	
+	@Column(name = "FECHA_RESPUESTA")
+	private Date fecha;
 	
 	//Muchas Respuestas tienen una pregunta
 	@ManyToOne

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.utng.askme.entity.Pregunta;
-import com.utng.askme.entity.PreguntaBusquedaDTO;
+import com.utng.askme.entity.BusquedaDTO;
 
 @Service
 public class PreguntaFactoryService implements IAbstractFactory<Pregunta> {
@@ -23,7 +23,7 @@ public class PreguntaFactoryService implements IAbstractFactory<Pregunta> {
 	PreguntaTwitterService preguntaTwitterService;
 	
 	@Override
-	public Pregunta crearPregunta(Pregunta preguntaParam, MultipartFile archi)throws IOException {
+	public Pregunta crear(Pregunta preguntaParam, MultipartFile archi)throws IOException {
 		if(preguntaParam.getTipoPregunta().contains("FB")) {
 			return preguntaFacebookService.guardarPregunta(preguntaParam, archi);
 		}
@@ -37,7 +37,7 @@ public class PreguntaFactoryService implements IAbstractFactory<Pregunta> {
 	}
 
 	@Override
-	public void eliminarPregunta(Pregunta preguntaParam) {
+	public void eliminar(Pregunta preguntaParam) {
 		if(preguntaParam.getTipoPregunta().contains("FB")) {
 			preguntaFacebookService.eliminarPregunta(preguntaParam);
 		}
@@ -50,28 +50,28 @@ public class PreguntaFactoryService implements IAbstractFactory<Pregunta> {
 	}
 
 	@Override
-	public List<Pregunta> buscarPorNombre(PreguntaBusquedaDTO preguntaParam) {
-		if(preguntaParam.getTipoPregunta().contains("FB")) {
+	public List<Pregunta> buscarPorNombre(BusquedaDTO preguntaParam) {
+		if(preguntaParam.getTipo().contains("FB")) {
 			return preguntaFacebookService.buscarPorNombre(preguntaParam.getBusqueda());
 		}
-		if(preguntaParam.getTipoPregunta().contains("RD")) {
+		if(preguntaParam.getTipo().contains("RD")) {
 			return preguntaRedditService.buscarPorNombre(preguntaParam.getBusqueda());
 		}
-		if(preguntaParam.getTipoPregunta().contains("TW")) {
+		if(preguntaParam.getTipo().contains("TW")) {
 			return preguntaTwitterService.buscarPorNombre(preguntaParam.getBusqueda());
 		}
 		return null;	
 	}
 
 	@Override
-	public List<Pregunta> buscarPorNombreSubtema(PreguntaBusquedaDTO preguntaParam) {
-		if(preguntaParam.getTipoPregunta().contains("FB")) {
+	public List<Pregunta> buscarPorNombreSubtema(BusquedaDTO preguntaParam) {
+		if(preguntaParam.getTipo().contains("FB")) {
 			return preguntaFacebookService.buscarPorNombreSubtema(preguntaParam.getBusqueda());
 		}
-		if(preguntaParam.getTipoPregunta().contains("RD")) {
+		if(preguntaParam.getTipo().contains("RD")) {
 			return preguntaRedditService.buscarPorNombreSubtema(preguntaParam.getBusqueda());
 		}
-		if(preguntaParam.getTipoPregunta().contains("TW")) {
+		if(preguntaParam.getTipo().contains("TW")) {
 			return preguntaTwitterService.buscarPorNombreSubtema(preguntaParam.getBusqueda());
 		}	
 		return null;
@@ -87,13 +87,13 @@ public class PreguntaFactoryService implements IAbstractFactory<Pregunta> {
 		}
 		if(buscarTodos.contains("TW")) {
 			return preguntaTwitterService.buscarTodos(buscarTodos);
-		}
-
-		
+		}	
 		return null;
 	}
+
 	
-	
+
+
 	
 
 
