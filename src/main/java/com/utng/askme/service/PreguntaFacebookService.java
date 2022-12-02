@@ -20,9 +20,8 @@ public class PreguntaFacebookService implements IPreguntaService{
 	
 	
 	@Override
-	public List<Pregunta> buscarTodos() {
-		List<Pregunta> lista = iPreguntaRepositoy.findAll();
-		
+	public List<Pregunta> buscarTodos(String tipoPregunta) {
+		List<Pregunta> lista = iPreguntaRepositoy.buscarTodosFacebook();
 		return lista;
 	}
 
@@ -48,7 +47,6 @@ public class PreguntaFacebookService implements IPreguntaService{
 
 	@Override
 	public Pregunta actualizarPregunta(Pregunta pregunta) {
-//		Optional<Pregunta> idPerfil = iPreguntaRepositoy.findById(pregunta.getId());
 		
 		Pregunta regresaPregunta = iPreguntaRepositoy.save(pregunta);
 
@@ -56,9 +54,21 @@ public class PreguntaFacebookService implements IPreguntaService{
 	}
 
 	@Override
-	public void eliminarPregunta(Integer id) {
-		iPreguntaRepositoy.deleteById(id);		
+	public void eliminarPregunta(Pregunta preguntaId) {
+		iPreguntaRepositoy.deleteById(preguntaId.getId());		
 		
+	}
+
+	@Override
+	public List<Pregunta> buscarPorNombre(String nombre) {
+		List<Pregunta> listaPorNombre = iPreguntaRepositoy.buscarPorTemaFacebook(nombre);
+		return listaPorNombre;
+	}
+
+	@Override
+	public List<Pregunta> buscarPorNombreSubtema(String nombre) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

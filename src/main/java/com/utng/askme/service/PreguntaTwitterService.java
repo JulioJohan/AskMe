@@ -1,7 +1,6 @@
 package com.utng.askme.service;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.utng.askme.entity.Pregunta;
 import com.utng.askme.entity.PreguntaDTO;
-import com.utng.askme.entity.Respuesta;
 import com.utng.askme.repository.IPreguntaRepositoy;
 import com.utng.askme.repository.IRespuestaRepositoy;
 
@@ -47,10 +45,8 @@ public class PreguntaTwitterService implements IPreguntaService {
 	}
 
 	@Override
-	public List<Pregunta> buscarTodos() {
-		List<Pregunta> lista = iPreguntaRepositoy.findAll();
-		
-			
+	public List<Pregunta> buscarTodos(String tipoPregunta) {
+		List<Pregunta> lista = iPreguntaRepositoy.buscarTodosTwitter();
 		return lista;
 	}
 
@@ -84,10 +80,21 @@ public class PreguntaTwitterService implements IPreguntaService {
 	}
 
 	@Override
-	public void eliminarPregunta(Integer id) {
-		List<Respuesta> listaRespuesta = respuestaRepository.buscarPreguntaPorId(id);
+	public void eliminarPregunta(Pregunta preguntaId) {
+		iPreguntaRepositoy.deleteById(preguntaId.getId());		
 		
-		iPreguntaRepositoy.deleteById(id);		
+	}
+
+	@Override
+	public List<Pregunta> buscarPorNombre(String nombre) {
+		List<Pregunta> listaPorNombre = iPreguntaRepositoy.buscarPorTemaTwitter(nombre);
+		return listaPorNombre;
+	}
+
+	@Override
+	public List<Pregunta> buscarPorNombreSubtema(String nombre) {
+		List<Pregunta> listaPorNombre = iPreguntaRepositoy.buscarPorSubtemaTwitter(nombre);
+		return listaPorNombre;
 	}
 	
 }

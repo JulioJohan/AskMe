@@ -9,14 +9,20 @@ import com.utng.askme.entity.Pregunta;
 
 public interface IPreguntaService {
 
-	public List<Pregunta> buscarTodos();
+	public List<Pregunta> buscarTodos(String tipoPregunta);
 	
 	public Pregunta buscarPorId(Integer id);
 	
 	public Pregunta guardarPregunta(Pregunta pregunta, MultipartFile archi)throws IOException ;
 	
 	public Pregunta actualizarPregunta(Pregunta pregunta);
-	
-	public void eliminarPregunta(Integer id);
 
+	public List<Pregunta> buscarPorNombre(String nombre);
+	
+	public List<Pregunta> buscarPorNombreSubtema(String nombre);
+	
+	public void eliminarPregunta(Pregunta id);
+
+
+	
 }
