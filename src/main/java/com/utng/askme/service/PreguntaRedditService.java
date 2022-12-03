@@ -35,6 +35,7 @@ public class PreguntaRedditService implements IPreguntaService{
 		if(!archi.isEmpty()) {
 			pregunta.setArchivo(archi.getBytes());
 		}
+		pregunta.setLike(0);
 		pregunta.setFecha(new Date());
 		Pregunta guardar = iPreguntaRepositoy.save(pregunta);
 		return guardar;

@@ -51,7 +51,7 @@ public class PreguntaFacebookService implements IPreguntaService{
 			pregunta.setArchivo(archi.getBytes());
 		}
 		pregunta.setFecha(new Date());
-
+		pregunta.setLike(0);
 		Pregunta guardar = iPreguntaRepositoy.save(pregunta);
 
 		return guardar;

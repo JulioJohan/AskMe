@@ -45,7 +45,7 @@ public class PreguntaTwitterService implements IPreguntaService {
 		}
 		pregunta.setFecha(new Date());
 				
-		
+		pregunta.setLike(0);
 		Pregunta guardar = iPreguntaRepositoy.save(pregunta);
 		
 		return guardar;
