@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.utng.askme.entity.Respuesta;
+import com.utng.askme.entity.RespuestaDTO;
 
 @Service
 public class RespuestaTwitterService implements IRespuestaService{
@@ -18,13 +19,7 @@ public class RespuestaTwitterService implements IRespuestaService{
 	}
 
 	@Override
-	public Respuesta encoentrarRespuestaPorId(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Respuesta guardarRespuesta(Respuesta respuestaDTO, MultipartFile archi) throws IOException {
+	public Respuesta guardarRespuesta(RespuestaDTO respuestaDTO, MultipartFile archi) throws IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}

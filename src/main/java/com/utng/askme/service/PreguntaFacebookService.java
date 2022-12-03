@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.utng.askme.entity.Pregunta;
+import com.utng.askme.entity.Respuesta;
 import com.utng.askme.repository.IPreguntaRepositoy;
+import com.utng.askme.repository.IRespuestaRepositoy;
 
 @Service
 public class PreguntaFacebookService implements IPreguntaService{
@@ -18,6 +20,8 @@ public class PreguntaFacebookService implements IPreguntaService{
 	@Autowired
 	IPreguntaRepositoy iPreguntaRepositoy;
 	
+	@Autowired
+	IRespuestaRepositoy respuestaRepository;
 	
 	@Override
 	public List<Pregunta> buscarTodos(String tipoPregunta) {
@@ -54,8 +58,14 @@ public class PreguntaFacebookService implements IPreguntaService{
 	}
 
 	@Override
-	public void eliminarPregunta(Pregunta preguntaId) {
-		iPreguntaRepositoy.deleteById(preguntaId.getId());		
+	public void eliminarPregunta(Pregunta id) {
+		List<Respuesta> listaRespuesta = respuestaRepository.buscarPreguntaPorId(id.getId());
+		if(!listaRespuesta.isEmpty()) {
+			for(Respuesta respuestas : listaRespuesta) {
+				respuestaRepository.deleteById(respuestas.getId());
+			}
+		}
+		iPreguntaRepositoy.deleteById(id.getId());		
 		
 	}
 

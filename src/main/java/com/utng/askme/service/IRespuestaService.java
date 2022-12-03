@@ -6,14 +6,13 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.utng.askme.entity.Respuesta;
+import com.utng.askme.entity.RespuestaDTO;
 
 public interface IRespuestaService {
 	
 	public List<Respuesta> traeTodos();
-	
-	public Respuesta encoentrarRespuestaPorId(Integer id);
-	
-	public Respuesta guardarRespuesta(Respuesta respuestaDTO, MultipartFile archi) throws IOException;
+		
+	public Respuesta guardarRespuesta(RespuestaDTO respuestaDTO, MultipartFile archi) throws IOException;
 
 	public void eliminarRespuestaId(Integer respuestaDTO);
 
