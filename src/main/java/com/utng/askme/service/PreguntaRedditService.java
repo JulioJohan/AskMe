@@ -36,7 +36,8 @@ public class PreguntaRedditService implements IPreguntaService{
 			pregunta.setArchivo(archi.getBytes());
 		}
 		pregunta.setFecha(new Date());
-		return null;
+		Pregunta guardar = iPreguntaRepositoy.save(pregunta);
+		return guardar;
 	}
 
 	@Override
@@ -61,6 +62,18 @@ public class PreguntaRedditService implements IPreguntaService{
 	public List<Pregunta> buscarPorNombreSubtema(String nombre) {
 		List<Pregunta> listaBusquedaSubtema = iPreguntaRepositoy.buscarPorSubtemaReddit(nombre);
 		return listaBusquedaSubtema;
+	}
+
+	@Override
+	public Integer sumarLikes(Integer idRespuesta) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer restarLikes(Integer idRespuesta) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

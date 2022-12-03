@@ -27,8 +27,8 @@ import com.utng.askme.service.IRespuestaService;
 @RequestMapping("/respuesta")
 public class RespuestaController {
 
-	@Autowired
-	IRespuestaService respuestaService;
+//	@Autowired
+//	IRespuestaService respuestaService;
 	
 //	@GetMapping("/consultarTodos")
 //	public ResponseEntity<List<RespuestaDTO>> consultarTodos(){

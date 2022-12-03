@@ -21,6 +21,10 @@ public interface IPreguntaService {
 	
 	public List<Pregunta> buscarPorNombreSubtema(String nombre);
 	
+	public Integer sumarLikes(Integer idRespuesta);
+	
+	public Integer restarLikes(Integer idRespuesta);
+	
 	public void eliminarPregunta(Pregunta id);
 
 

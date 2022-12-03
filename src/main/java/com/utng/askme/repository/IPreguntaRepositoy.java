@@ -9,13 +9,13 @@ import org.springframework.data.repository.query.Param;
 import com.utng.askme.entity.Pregunta;
 
 public interface IPreguntaRepositoy extends JpaRepository<Pregunta, Integer>{
-	@Query(value = "SELECT id,archivo,descripcion_pregunta,subtema_pregunta,tema_pregunta,titulo_pregunta,fecha_publicacion,tipo_pregunta  FROM pregunta p WHERE p.tipo_pregunta = 'FB'", nativeQuery = true)
+	@Query(value = "SELECT id,archivo,descripcion_pregunta,subtema_pregunta,tema_pregunta,titulo_pregunta,fecha_publicacion,tipo_pregunta,like_pregunta  FROM pregunta p WHERE p.tipo_pregunta = 'FB'", nativeQuery = true)
 	List<Pregunta> buscarTodosFacebook();
 	
-	@Query(value = "SELECT id,archivo,descripcion_pregunta,subtema_pregunta,tema_pregunta,titulo_pregunta,fecha_publicacion,tipo_pregunta  FROM pregunta p WHERE p.tipo_pregunta = 'TW'", nativeQuery = true)
+	@Query(value = "SELECT id,archivo,descripcion_pregunta,subtema_pregunta,tema_pregunta,titulo_pregunta,fecha_publicacion,tipo_pregunta,like_pregunta  FROM pregunta p WHERE p.tipo_pregunta = 'TW'", nativeQuery = true)
 	List<Pregunta> buscarTodosTwitter();	
 
-	@Query(value = "SELECT id,archivo,descripcion_pregunta,subtema_pregunta,tema_pregunta,titulo_pregunta,fecha_publicacion,tipo_pregunta  FROM pregunta p WHERE p.tipo_pregunta = 'RD'", nativeQuery = true)
+	@Query(value = "SELECT id,archivo,descripcion_pregunta,subtema_pregunta,tema_pregunta,titulo_pregunta,fecha_publicacion,tipo_pregunta,like_pregunta FROM pregunta p WHERE p.tipo_pregunta = 'RD'", nativeQuery = true)
 	List<Pregunta> buscarTodosRedit();	
 	
 	@Query(value = "SELECT * FROM pregunta p WHERE p.tema_pregunta like :temaPregunta AND p.tipo_pregunta = 'FB'", nativeQuery = true)

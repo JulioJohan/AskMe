@@ -37,6 +37,9 @@ public class Pregunta {
 	@Column(name = "SUBTEMA_PREGUNTA")
 	private String subtemaPregunta;
 	
+	@Column(name = "LIKE_PREGUNTA")
+	private Integer like;
+	
 	@Column(name = "FECHA_PUBLICACION")
 	private Date fecha;
 	

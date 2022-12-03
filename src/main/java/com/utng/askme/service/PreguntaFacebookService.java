@@ -5,8 +5,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.utng.askme.entity.Pregunta;
@@ -22,6 +26,10 @@ public class PreguntaFacebookService implements IPreguntaService{
 	
 	@Autowired
 	IRespuestaRepositoy respuestaRepository;
+	
+	@Autowired
+	EntityManager entityManager;
+
 	
 	@Override
 	public List<Pregunta> buscarTodos(String tipoPregunta) {
@@ -77,8 +85,32 @@ public class PreguntaFacebookService implements IPreguntaService{
 
 	@Override
 	public List<Pregunta> buscarPorNombreSubtema(String nombre) {
-		// TODO Auto-generated method stub
+		List<Pregunta> listaPorNombreSubtema = iPreguntaRepositoy.buscarPorSubtemaFacebook(nombre);
 		return null;
+	}
+	
+	@Override
+	@Transactional
+	public Integer sumarLikes(Integer idRespuesta) {
+		
+		Query query = entityManager.createNativeQuery("UPDATE respuesta r SET r.like_respuesta = r.like_respuesta +1 WHERE r.id =:id");
+		query.setParameter("id", idRespuesta);
+		
+		query.executeUpdate();
+		return idRespuesta;
+				
+	}
+
+	@Override
+	@Transactional
+	public Integer restarLikes(Integer idRespuesta) {
+		Query query = entityManager.createNativeQuery("UPDATE pregunta p SET p.like = r.like_respuesta -1 WHERE r.id =:id");
+		
+		query.setParameter("id", idRespuesta);
+		query.executeUpdate();
+
+		return idRespuesta;
+		
 	}
 
 	

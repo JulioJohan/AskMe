@@ -77,5 +77,17 @@ public class PreguntaTwitterService implements IPreguntaService {
 		List<Pregunta> listaPorNombre = iPreguntaRepositoy.buscarPorSubtemaTwitter(nombre);
 		return listaPorNombre;
 	}
+
+	@Override
+	public Integer sumarLikes(Integer idRespuesta) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer restarLikes(Integer idRespuesta) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
