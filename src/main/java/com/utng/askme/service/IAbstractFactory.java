@@ -12,7 +12,7 @@ public interface IAbstractFactory<T> {
 
 	T crear (T preguntaParam, MultipartFile archi)throws IOException ;
 	
-	void eliminar(T preguntaParam);
+	T eliminar(T preguntaParam);
 	
 	List<T> buscarTodo(String buscarTodos);
 	

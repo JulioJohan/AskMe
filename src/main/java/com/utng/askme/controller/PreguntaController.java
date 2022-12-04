@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,9 +47,9 @@ public class PreguntaController {
 			
 		Resource image = new ByteArrayResource(optionalR.get().getArchivo());
 		
-		if(optionalR.isEmpty()|| optionalR.get().getArchivo()==null) {
-			return ResponseEntity.notFound().build();
-		}
+//		if(optionalR.isEmpty()|| optionalR.get().getArchivo()==null) {
+//			return ResponseEntity.notFound().build();
+//		}
 		
 		return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
 	}
@@ -71,10 +72,10 @@ public class PreguntaController {
 		return new ResponseEntity<List<Pregunta>>(response, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/eliminarPregunta/{id}")
-	public ResponseEntity<Object> eliminarPregunta(@Valid Pregunta pregunta) {
-		preguntaFactory.eliminar(pregunta);
-		return ResponseEntity.noContent().build();
+	@PostMapping("/eliminarPregunta")
+	public ResponseEntity<Pregunta> eliminarPregunta(@RequestBody Pregunta pregunta) {
+		Pregunta preguntaa = preguntaFactory.eliminar(pregunta);
+		return new ResponseEntity<Pregunta>(preguntaa, HttpStatus.OK);
 	}
 	
 	@PostMapping("/guardarPregunta")

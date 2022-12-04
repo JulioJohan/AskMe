@@ -25,9 +25,10 @@ public class RespuestaFacebookService implements IRespuestaService{
 	IRespuestaRepositoy respuestaRepository;
 	
 	@Override
-	public List<Respuesta> traeTodos() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Respuesta> traeTodosPorID(Integer idPregunta) {
+		 List<Respuesta> todasRespuestas = respuestaRepository.buscarPreguntaPorId(idPregunta);
+		 
+		return todasRespuestas;
 	}
 
 
@@ -42,7 +43,7 @@ public class RespuestaFacebookService implements IRespuestaService{
 			preguntaObtenida = optionalPregunta.get();
 			if(!archi.isEmpty()) {
 				respuesta.setArchivo(archi.getBytes());
-				respuesta.setDescripcionRespuesta(respuestaDTO.getDescrpcionRespuesta());
+				respuesta.setDescripcionRespuesta(respuestaDTO.getDescripcionRespuesta());
 				respuesta.setFecha(new Date());
 				respuesta.setLike(0);
 				respuesta.setPregunta(preguntaObtenida);

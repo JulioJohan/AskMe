@@ -10,7 +10,7 @@ import com.utng.askme.entity.Respuesta;
 
 public interface IRespuestaRepositoy extends JpaRepository<Respuesta, Integer> {
 
-	@Query(value = "SELECT id,descripcion_respuesta,id_pregunta_fk FROM respuesta r WHERE r.id_pregunta_fk = :idPregunta", nativeQuery = true)
+	@Query(value = "SELECT id,archivo,descripcion_respuesta,id_pregunta_fk,like_respuesta,fecha_respuesta  FROM respuesta r WHERE r.id_pregunta_fk = :idPregunta", nativeQuery = true)
 	List<Respuesta> buscarPreguntaPorId(@Param("idPregunta") Integer idPregunta);
 	
 //	@Query(value = "UPDATE respuesta r SET r.like_respuesta =:likea WHERE r.id =:id",nativeQuery = true)

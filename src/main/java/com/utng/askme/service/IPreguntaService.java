@@ -25,7 +25,7 @@ public interface IPreguntaService {
 	
 	public Integer restarLikes(Integer idRespuesta);
 	
-	public void eliminarPregunta(Pregunta id);
+	public Pregunta eliminarPregunta(Pregunta id);
 
 
 	

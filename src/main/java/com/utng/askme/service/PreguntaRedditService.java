@@ -48,9 +48,9 @@ public class PreguntaRedditService implements IPreguntaService{
 	}
 
 	@Override
-	public void eliminarPregunta(Pregunta preguntaId) {
+	public Pregunta eliminarPregunta(Pregunta preguntaId) {
 		iPreguntaRepositoy.deleteById(preguntaId.getId());		
-		
+		return preguntaId;
 	}
 
 	@Override

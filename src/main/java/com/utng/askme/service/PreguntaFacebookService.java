@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.utng.askme.entity.Pregunta;
 import com.utng.askme.entity.Respuesta;
+import com.utng.askme.entity.RespuestaDTO;
 import com.utng.askme.repository.IPreguntaRepositoy;
 import com.utng.askme.repository.IRespuestaRepositoy;
 
@@ -66,14 +67,15 @@ public class PreguntaFacebookService implements IPreguntaService{
 	}
 
 	@Override
-	public void eliminarPregunta(Pregunta id) {
+	public Pregunta eliminarPregunta(Pregunta id) {
 		List<Respuesta> listaRespuesta = respuestaRepository.buscarPreguntaPorId(id.getId());
 		if(!listaRespuesta.isEmpty()) {
 			for(Respuesta respuestas : listaRespuesta) {
 				respuestaRepository.deleteById(respuestas.getId());
 			}
 		}
-		iPreguntaRepositoy.deleteById(id.getId());		
+		iPreguntaRepositoy.deleteById(id.getId());
+		return	id;
 		
 	}
 

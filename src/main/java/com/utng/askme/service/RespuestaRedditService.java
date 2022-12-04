@@ -13,7 +13,7 @@ import com.utng.askme.entity.RespuestaDTO;
 public class RespuestaRedditService implements IRespuestaService {
 
 	@Override
-	public List<Respuesta> traeTodos() {
+	public List<Respuesta> traeTodosPorID(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

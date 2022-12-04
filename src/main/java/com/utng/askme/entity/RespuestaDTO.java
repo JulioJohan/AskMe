@@ -17,16 +17,14 @@ public class RespuestaDTO {
 
 	private Integer id;
 	 
-	private String descrpcionRespuesta;
+	private String descripcionRespuesta;
 	
 	private Integer like;
 	
 	private Date fecha;
 	
 	private Integer id_pregunta_fk;
-	
-	private String tipoPregunta;
-	
+		
 	@Lob
 	@JsonIgnore
 	private byte[] archivo;

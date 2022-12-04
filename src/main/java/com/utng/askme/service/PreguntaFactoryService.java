@@ -37,16 +37,17 @@ public class PreguntaFactoryService implements IAbstractFactory<Pregunta> {
 	}
 
 	@Override
-	public void eliminar(Pregunta preguntaParam) {
+	public Pregunta eliminar(Pregunta preguntaParam) {
 		if(preguntaParam.getTipoPregunta().contains("FB")) {
-			preguntaFacebookService.eliminarPregunta(preguntaParam);
+			return preguntaFacebookService.eliminarPregunta(preguntaParam);
 		}
 		if(preguntaParam.getTipoPregunta().contains("RD")) {
-			preguntaRedditService.eliminarPregunta(preguntaParam);
+			return preguntaRedditService.eliminarPregunta(preguntaParam);
 		}
 		if(preguntaParam.getTipoPregunta().contains("TW")) {
-			preguntaTwitterService.eliminarPregunta(preguntaParam);
+			return preguntaTwitterService.eliminarPregunta(preguntaParam);
 		}	
+		return null;
 	}
 
 	@Override
