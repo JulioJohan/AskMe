@@ -76,11 +76,11 @@ public class RespuestaController {
 
 	}
 //	
-//	@DeleteMapping("/eliminarRespuesta/{id}")
-//	public ResponseEntity<Object> eliminarPregunta(@PathVariable Integer id) {
-//		respuestaService.eliminarRespuestaId(id);
-//		return ResponseEntity.noContent().build();
-//	}
+	@DeleteMapping("/eliminarRespuesta/{id}")
+	public ResponseEntity<Object> eliminarPregunta(@PathVariable Integer id) {
+		respuestaService.eliminarRespuestaId(id);
+		return ResponseEntity.noContent().build();
+	}
 //	
 //	
 //	@PutMapping("/sumarLikes/{idRespuesta}")

@@ -56,7 +56,7 @@ public class RespuestaFacebookService implements IRespuestaService{
 
 	@Override
 	public void eliminarRespuestaId(Integer respuestaDTO) {
-		// TODO Auto-generated method stub
+		respuestaRepository.deleteById(respuestaDTO);
 		
 	}
 
