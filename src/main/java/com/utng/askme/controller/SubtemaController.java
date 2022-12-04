@@ -27,16 +27,16 @@ public class SubtemaController {
 	@Autowired
 	ISubtemaService subtemaService;
 	
-	@GetMapping("/consultarTodos")
-	public ResponseEntity<List<Subtema>> consultarTodos(@RequestParam Integer id){
+	@GetMapping("/consultarTodos/{id}")
+	public ResponseEntity<List<Subtema>> consultarTodos(@PathVariable Integer id){
 		List<Subtema> response = subtemaService.consultarSubtemaPorTema(id);
 		return new ResponseEntity<List<Subtema>>(response, HttpStatus.OK);
 	}
 	
 	@PostMapping("/guardarSubtema")
-	public ResponseEntity<SubtemaDTO> guardar(@RequestBody SubtemaDTO temaDTO ) {
-		SubtemaDTO response = subtemaService.guardarSubtema(temaDTO);
-		return new ResponseEntity<SubtemaDTO>(response, HttpStatus.OK);
+	public ResponseEntity<Subtema> guardar(@RequestBody SubtemaDTO temaDTO ) {
+		Subtema response = subtemaService.guardarSubtema(temaDTO);
+		return new ResponseEntity<Subtema>(response, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/eliminarSubtema/{id}")

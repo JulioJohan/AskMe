@@ -13,7 +13,7 @@ public class SubtemaDTO {
 	
 	private String nombre;
 
-	private TemaDTO tema;
+	private Integer tema;
 
 
 }

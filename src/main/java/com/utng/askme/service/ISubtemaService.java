@@ -9,7 +9,7 @@ public interface ISubtemaService {
 
 	public List<Subtema> consultarSubtemaPorTema(Integer id);
 	
-	public SubtemaDTO guardarSubtema(SubtemaDTO pregunta);
+	public Subtema guardarSubtema(SubtemaDTO subtemaR);
 	
 	public void eliminarSubtema(Integer id);
 	
