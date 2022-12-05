@@ -5,8 +5,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.utng.askme.entity.Pregunta;
@@ -23,6 +27,9 @@ public class RespuestaFacebookService implements IRespuestaService{
 	
 	@Autowired
 	IRespuestaRepositoy respuestaRepository;
+	
+	@Autowired
+	EntityManager entityManager;
 	
 	@Override
 	public List<Respuesta> traeTodosPorID(Integer idPregunta) {
@@ -61,15 +68,24 @@ public class RespuestaFacebookService implements IRespuestaService{
 	}
 
 	@Override
+	@Transactional
 	public Integer sumarLikes(Integer idRespuesta) {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = entityManager.createNativeQuery("UPDATE respuesta r SET r.like_respuesta = r.like_respuesta +1 WHERE r.id =:id");
+		query.setParameter("id", idRespuesta);
+		
+		query.executeUpdate();
+		return idRespuesta;
 	}
 
 	@Override
+	@Transactional
 	public Integer restarLikes(Integer idRespuesta) {
-		// TODO Auto-generated method stub
-		return null;
+	Query query = entityManager.createNativeQuery("UPDATE respuesta r SET r.like_respuesta = r.like_respuesta -1 WHERE r.id =:id");
+		
+		query.setParameter("id", idRespuesta);
+		query.executeUpdate();
+
+		return idRespuesta;
 	}
 
 	

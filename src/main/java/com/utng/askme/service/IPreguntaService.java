@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.utng.askme.entity.BusquedaDTO;
 import com.utng.askme.entity.Pregunta;
 
 public interface IPreguntaService {
@@ -17,13 +18,13 @@ public interface IPreguntaService {
 	
 	public Pregunta actualizarPregunta(Pregunta pregunta);
 
-	public List<Pregunta> buscarPorNombre(String nombre);
+	public List<Pregunta> buscarPorNombre(BusquedaDTO busquedaDTO);
 	
 	public List<Pregunta> buscarPorNombreSubtema(String nombre);
 	
-	public Integer sumarLikes(Integer idRespuesta);
+	public Pregunta sumarLikes(Pregunta idRespuesta);
 	
-	public Integer restarLikes(Integer idRespuesta);
+	public Pregunta restarLikes(Pregunta idRespuesta);
 	
 	public Pregunta eliminarPregunta(Pregunta id);
 

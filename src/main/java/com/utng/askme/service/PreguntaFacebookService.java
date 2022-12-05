@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.utng.askme.entity.BusquedaDTO;
 import com.utng.askme.entity.Pregunta;
 import com.utng.askme.entity.Respuesta;
 import com.utng.askme.entity.RespuestaDTO;
@@ -50,6 +51,8 @@ public class PreguntaFacebookService implements IPreguntaService{
 	public Pregunta guardarPregunta(Pregunta pregunta, MultipartFile archi) throws IOException {
 		if(!archi.isEmpty()) {
 			pregunta.setArchivo(archi.getBytes());
+		}else {
+			pregunta.setArchivo(null);
 		}
 		pregunta.setFecha(new Date());
 		pregunta.setLike(0);
@@ -80,8 +83,8 @@ public class PreguntaFacebookService implements IPreguntaService{
 	}
 
 	@Override
-	public List<Pregunta> buscarPorNombre(String nombre) {
-		List<Pregunta> listaPorNombre = iPreguntaRepositoy.buscarPorTemaFacebook(nombre);
+	public List<Pregunta> buscarPorNombre(BusquedaDTO preguntaParam) {
+		List<Pregunta> listaPorNombre = iPreguntaRepositoy.buscarPorFacebook(preguntaParam.getTema(),preguntaParam.getSubtema(),preguntaParam.getTipo());
 		return listaPorNombre;
 	}
 
@@ -93,10 +96,10 @@ public class PreguntaFacebookService implements IPreguntaService{
 	
 	@Override
 	@Transactional
-	public Integer sumarLikes(Integer idRespuesta) {
+	public Pregunta sumarLikes(Pregunta idRespuesta) {
 		
-		Query query = entityManager.createNativeQuery("UPDATE respuesta r SET r.like_respuesta = r.like_respuesta +1 WHERE r.id =:id");
-		query.setParameter("id", idRespuesta);
+		Query query = entityManager.createNativeQuery("UPDATE pregunta p SET p.like_pregunta = p.like_pregunta +1 WHERE p.id =:id");
+		query.setParameter("id", idRespuesta.getId());
 		
 		query.executeUpdate();
 		return idRespuesta;
@@ -105,10 +108,10 @@ public class PreguntaFacebookService implements IPreguntaService{
 
 	@Override
 	@Transactional
-	public Integer restarLikes(Integer idRespuesta) {
-		Query query = entityManager.createNativeQuery("UPDATE pregunta p SET p.like = r.like_respuesta -1 WHERE r.id =:id");
+	public Pregunta restarLikes(Pregunta idRespuesta) {
+		Query query = entityManager.createNativeQuery("UPDATE pregunta p SET p.like_pregunta = p.like_pregunta -1 WHERE p.id =:id");
 		
-		query.setParameter("id", idRespuesta);
+		query.setParameter("id", idRespuesta.getId());
 		query.executeUpdate();
 
 		return idRespuesta;

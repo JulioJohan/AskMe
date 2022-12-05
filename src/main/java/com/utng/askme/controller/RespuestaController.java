@@ -83,17 +83,17 @@ public class RespuestaController {
 	}
 //	
 //	
-//	@PutMapping("/sumarLikes/{idRespuesta}")
-//	public ResponseEntity<Integer> sumarLikes(@PathVariable Integer idRespuesta) throws IOException{
-//		Integer response = respuestaService.sumarLikes(idRespuesta);
-//		return new ResponseEntity<Integer>(response,HttpStatus.OK);
-//	}
-//	
-//	@PutMapping("/restarLikes/{idRespuesta}")
-//	public ResponseEntity<Integer> restarLikes(@PathVariable Integer idRespuesta) throws IOException{
-//		Integer response = respuestaService.restarLikes(idRespuesta);
-//		return new ResponseEntity<Integer>(response,HttpStatus.OK);
-//	}
+	@PutMapping("/sumarLikes/{idRespuesta}")
+	public ResponseEntity<Integer> sumarLikes(@PathVariable Integer idRespuesta) throws IOException{
+		Integer response = respuestaService.sumarLikes(idRespuesta);
+		return new ResponseEntity<Integer>(response,HttpStatus.OK);
+	}
+	
+	@PutMapping("/restarLikes/{idRespuesta}")
+	public ResponseEntity<Integer> restarLikes(@PathVariable Integer idRespuesta) throws IOException{
+		Integer response = respuestaService.restarLikes(idRespuesta);
+		return new ResponseEntity<Integer>(response,HttpStatus.OK);
+	}
 	
 	
 	

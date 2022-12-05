@@ -11,5 +11,8 @@ public class BusquedaDTO {
 
 	private String tipo;
 	
-	private String busqueda;
+	private String tema;
+	
+	private String subtema;
+
 }

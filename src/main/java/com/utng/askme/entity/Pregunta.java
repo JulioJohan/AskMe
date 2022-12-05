@@ -55,5 +55,9 @@ public class Pregunta {
 		
 	}
 	
+	public Integer getArchivoHashCode() {
+		return(this.archivo != null) ? this.archivo.hashCode():null;
+	}
+	
 }
 

@@ -30,9 +30,9 @@ public class PreguntaFactoryService implements IAbstractFactory<Pregunta> {
 		if(preguntaParam.getTipoPregunta().contains("RD")) {
 			return preguntaRedditService.guardarPregunta(preguntaParam, archi);
 		}
-		if(preguntaParam.getTipoPregunta().contains("TW")) {
-			return preguntaTwitterService.guardarPregunta(preguntaParam, archi);
-		}	
+//		if(preguntaParam.getTipoPregunta().contains("TW")) {
+//			return preguntaTwitterService.guardarPregunta(preguntaParam, archi);
+//		}	
 		return null;
 	}
 
@@ -44,37 +44,37 @@ public class PreguntaFactoryService implements IAbstractFactory<Pregunta> {
 		if(preguntaParam.getTipoPregunta().contains("RD")) {
 			return preguntaRedditService.eliminarPregunta(preguntaParam);
 		}
-		if(preguntaParam.getTipoPregunta().contains("TW")) {
-			return preguntaTwitterService.eliminarPregunta(preguntaParam);
-		}	
+//		if(preguntaParam.getTipoPregunta().contains("TW")) {
+//			return preguntaTwitterService.eliminarPregunta(preguntaParam);
+//		}	
 		return null;
 	}
 
 	@Override
 	public List<Pregunta> buscarPorNombre(BusquedaDTO preguntaParam) {
 		if(preguntaParam.getTipo().contains("FB")) {
-			return preguntaFacebookService.buscarPorNombre(preguntaParam.getBusqueda());
+			return preguntaFacebookService.buscarPorNombre(preguntaParam);
 		}
 		if(preguntaParam.getTipo().contains("RD")) {
-			return preguntaRedditService.buscarPorNombre(preguntaParam.getBusqueda());
+			return preguntaRedditService.buscarPorNombre(preguntaParam);
 		}
-		if(preguntaParam.getTipo().contains("TW")) {
-			return preguntaTwitterService.buscarPorNombre(preguntaParam.getBusqueda());
-		}
+//		if(preguntaParam.getTipo().contains("TW")) {
+//			return preguntaTwitterService.buscarPorNombre(preguntaParam);
+//		}
 		return null;	
 	}
 
 	@Override
 	public List<Pregunta> buscarPorNombreSubtema(BusquedaDTO preguntaParam) {
-		if(preguntaParam.getTipo().contains("FB")) {
-			return preguntaFacebookService.buscarPorNombreSubtema(preguntaParam.getBusqueda());
-		}
-		if(preguntaParam.getTipo().contains("RD")) {
-			return preguntaRedditService.buscarPorNombreSubtema(preguntaParam.getBusqueda());
-		}
-		if(preguntaParam.getTipo().contains("TW")) {
-			return preguntaTwitterService.buscarPorNombreSubtema(preguntaParam.getBusqueda());
-		}	
+//		if(preguntaParam.getTipo().contains("FB")) {
+//			return preguntaFacebookService.buscarPorNombreSubtema(preguntaParam.getBusqueda());
+//		}
+//		if(preguntaParam.getTipo().contains("RD")) {
+//			return preguntaRedditService.buscarPorNombreSubtema(preguntaParam.getBusqueda());
+//		}
+//		if(preguntaParam.getTipo().contains("TW")) {
+//			return preguntaTwitterService.buscarPorNombreSubtema(preguntaParam.getBusqueda());
+//		}	
 		return null;
 	}
 
@@ -88,6 +88,34 @@ public class PreguntaFactoryService implements IAbstractFactory<Pregunta> {
 		}
 		if(buscarTodos.contains("TW")) {
 			return preguntaTwitterService.buscarTodos(buscarTodos);
+		}	
+		return null;
+	}
+
+	@Override
+	public Pregunta sumarLikes(Pregunta pregunta) {
+		if(pregunta.getTipoPregunta().contains("FB")) {
+			return preguntaFacebookService.sumarLikes(pregunta);
+		}
+		if(pregunta.getTipoPregunta().contains("RD")) {
+			return preguntaRedditService.sumarLikes(pregunta);
+		}
+		if(pregunta.getTipoPregunta().contains("TW")) {
+			return preguntaTwitterService.sumarLikes(pregunta);
+		}	
+		return null;
+	}
+
+	@Override
+	public Pregunta restarLikes(Pregunta pregunta) {
+		if(pregunta.getTipoPregunta().contains("FB")) {
+			return preguntaFacebookService.restarLikes(pregunta);
+		}
+		if(pregunta.getTipoPregunta().contains("RD")) {
+			return preguntaRedditService.restarLikes(pregunta);
+		}
+		if(pregunta.getTipoPregunta().contains("TW")) {
+			return preguntaTwitterService.restarLikes(pregunta);
 		}	
 		return null;
 	}

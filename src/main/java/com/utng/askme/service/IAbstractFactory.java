@@ -19,5 +19,10 @@ public interface IAbstractFactory<T> {
 	List<T> buscarPorNombre (BusquedaDTO nombre);
 	
 	List<T> buscarPorNombreSubtema (BusquedaDTO  preguntaParam);
+	
+	T sumarLikes(T pregunta);
+	
+	T restarLikes(T pregunta);
+
 
 }

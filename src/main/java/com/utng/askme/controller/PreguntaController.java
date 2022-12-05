@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -60,7 +61,7 @@ public class PreguntaController {
 		return new ResponseEntity<List<Pregunta>>(response, HttpStatus.OK);
 	}
 	
-	@PostMapping("/buscarPorNombreTema")
+	@PostMapping("/buscarPorNombre")
 	public ResponseEntity <List<Pregunta>>buscarPorNombreTema(@RequestBody BusquedaDTO preguntaParam){
 		List<Pregunta> response = preguntaFactory.buscarPorNombre(preguntaParam);
 		return new ResponseEntity<List<Pregunta>>(response, HttpStatus.OK);
@@ -82,6 +83,18 @@ public class PreguntaController {
 	public ResponseEntity<Pregunta> guardarPreguntaTipo(@Valid Pregunta pregunta,@RequestParam MultipartFile archi) throws IOException{
 		Pregunta response = preguntaFactory.crear(pregunta,archi);
 		return new ResponseEntity<Pregunta>(response, HttpStatus.OK);
+	}
+	
+	@PutMapping("/sumarLikes")
+	public ResponseEntity<Pregunta> sumarLikes(@RequestBody Pregunta idRespuesta) throws IOException{
+		Pregunta response = preguntaFactory.sumarLikes(idRespuesta);
+		return new ResponseEntity<Pregunta>(response,HttpStatus.OK);
+	}
+	
+	@PutMapping("/restarLikes")
+	public ResponseEntity<Pregunta> restarLikes(@RequestBody Pregunta idRespuesta) throws IOException{
+		Pregunta response = preguntaFactory.restarLikes(idRespuesta);
+		return new ResponseEntity<Pregunta>(response,HttpStatus.OK);
 	}
 	
 }

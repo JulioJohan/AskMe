@@ -57,6 +57,18 @@ public class RespuestaFactoryService implements IAbstractFactory<Respuesta> {
 		return null;
 	}
 
+	@Override
+	public Respuesta sumarLikes(Respuesta pregunta) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Respuesta restarLikes(Respuesta pregunta) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 }
